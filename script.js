@@ -1,42 +1,73 @@
+
 let heads = 0;
 let tails = 0;
+
 let coin = document.querySelector(".coin");
 let flipBtn = document.querySelector("#flip-button");
-let resetBtn =  document.querySelector("#reset-button");
+let resetBtn = document.querySelector("#reset-button");
+
+// JOGAR MOEDA
 
 flipBtn.addEventListener("click", () => {
-let i = Math.floor(Math.random () *2);
+
+    let i = Math.floor(Math.random() * 2);
+
     coin.style.animation = "none";
-    if(i) {
+
+    if (i) {
+
         setTimeout(function() {
-            coin.style.animation = "spin-heads 3s forwards"
-        },100);
+            coin.style.animation = "spin-heads 3s forwards";
+        }, 100);
+
         heads++;
-    }else {
-       setTimeout(function() {
-            coin.style.animation = "spin-tails 3s forwards"
-        },100);
+
+    } else {
+
+        setTimeout(function() {
+            coin.style.animation = "spin-tails 3s forwards";
+        }, 100);
+
         tails++;
     }
-    setTimeout(updateStats, 3000);
+
     disableButton();
-    });
+
+    setTimeout(updateStats, 3000);
+});
+
+// ATUALIZAR PLACAR
+
 function updateStats() {
+
     document.querySelector("#heads-count").textContent =
-    `cara: ${heads}`;
-     document.querySelector("#tails-count").textContent =
-    `coroa: ${tails}`;
-};
+        `🪙 Cara: ${heads}`;
+
+    document.querySelector("#tails-count").textContent =
+        `👑 Coroa: ${tails}`;
+}
+
+// DESABILITAR BOTÃO DURANTE A ANIMAÇÃO
+
 function disableButton() {
+
     flipBtn.disabled = true;
+
     setTimeout(function() {
         flipBtn.disabled = false;
     }, 3000);
 }
 
-resetBtn.addEventListener('click',() => {
-    coin.computedStyleMap.animation = 'none';
+// RESETAR JOGO
+
+resetBtn.addEventListener("click", () => {
+
     heads = 0;
     tails = 0;
-    updateStats() 
-})
+
+    coin.style.animation = "none";
+
+    updateStats();
+
+    flipBtn.disabled = false;
+});
