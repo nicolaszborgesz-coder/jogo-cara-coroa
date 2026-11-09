@@ -36,7 +36,7 @@ flipBtn.addEventListener("click", () => {
     setTimeout(updateStats, 3000);
 });
 
-// ATUALIZAR PLACAR
+// PLACAR
 
 function updateStats() {
 
